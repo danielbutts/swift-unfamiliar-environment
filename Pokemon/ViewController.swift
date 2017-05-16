@@ -8,6 +8,7 @@ class ViewController: UIViewController {
     var score = 0
     var correctAnswer = 0
 
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
@@ -37,6 +38,8 @@ class ViewController: UIViewController {
 
         // Assign (the now random) strings at index 1..2 to UIImage buttons.
         button1.setImage(UIImage(named: pokemonList[0]), for: UIControlState())
+        button2.setImage(UIImage(named: pokemonList[1]), for: UIControlState())
+        button3.setImage(UIImage(named: pokemonList[2]), for: UIControlState())
 
 
         
@@ -54,7 +57,8 @@ class ViewController: UIViewController {
             title = "Nope. Sorry."
             score -= 1
         }
-        let ac = UIAlertController(title: title, message: "Your score is /(score).", preferredStyle: .alert)
+        scoreLabel.text = String(score)
+        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true, completion: nil)
     }
